@@ -4,8 +4,8 @@ data {
 }
 transformed data {
   real sd_y = sd(y);
-  real auto_scale_error = 100 * sd_y;
-  real auto_scale_slope = 2.5 * sd_y;
+  real scale_error = 10 * sd_y;
+  real scale_slope = 2.5 * sd_y;
 }
 parameters {
   real<lower=0> sigma_y_z;
@@ -20,10 +20,10 @@ transformed parameters {
   vector[T] mu;
   vector[T] nu;
 
-  real sigma_y = auto_scale_error * sigma_y_z;
-  real sigma_gamma = auto_scale_error * sigma_gamma_z;
-  real sigma_zeta = auto_scale_error * sigma_zeta_z;
-  real eta = auto_scale_slope * eta_z;
+  real sigma_y = scale_error * sigma_y_z;
+  real sigma_gamma = scale_error * sigma_gamma_z;
+  real sigma_zeta = scale_error * sigma_zeta_z;
+  real eta = scale_slope * eta_z;
 
   mu[1] = y[1] + sigma_gamma * gamma[1];
   nu[1] = sigma_zeta * zeta[1];

@@ -25,8 +25,8 @@ model {
   sigma_y ~ normal(0, 100);
   gamma ~ normal(0, 100);
   zeta ~ normal(0, 100);
-  eta ~ normal(eta_mean, 2.5);
-  phi ~ normal(-0.25, 0.25);
+  eta ~ normal(eta_mean, 1);
+  phi ~ normal(-0.5, 0.25);
 }
 generated quantities {
   vector[T] y_pred;
